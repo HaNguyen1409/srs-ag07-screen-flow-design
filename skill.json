@@ -1,0 +1,36 @@
+{
+  "$schema_version": 1,
+  "name": "srs-ag07-screen-flow-design",
+  "version": "1.0.0",
+  "node_id": "AG-07",
+  "kind": "agent",
+  "summary": "Agent Node AG-07 (Bước 10 SOP viết SRS): chuyển mô hình nghiệp vụ sơ bộ thành sitemap, luồng chuyển màn hình theo use case và danh mục màn hình; cập nhật theo delta chức năng sau mỗi vòng demo.",
+  "repository": "https://github.com/HaNguyen1409/srs-ag07-screen-flow-design",
+  "license": "MIT",
+  "interface": {
+    "contract": "SKILL.md — đầu vào/đầu ra là tài liệu Markdown/JSON mô tả trong skill; không gọi trực tiếp skill khác",
+    "output_artifact": null,
+    "sop_steps": [
+      {
+        "step": "12",
+        "title": "Màn hình/IAD sinh TỪ UC + ERD logical (điều hướng giữa màn hình, không chép luồng UC)",
+        "type": "Agent",
+        "receives_from": "B10, B11, B6, (B7); vòng ≥ 2: B17",
+        "sends_to": "B12a, B13"
+      }
+    ]
+  },
+  "upstream": {
+    "srs-ag10-functional-spec": "^1.0.0",
+    "srs-ag14-data-design": "^1.0.0",
+    "srs-ag03-gap-analysis": "^2.2.1",
+    "srs-ag04-competitor-research": "^2.0.0",
+    "srs-ag09-demo-feedback-triage": "^1.0.0"
+  },
+  "downstream": [
+    "srs-agui-ui-design-system",
+    "srs-ag08-prototype-builder"
+  ],
+  "orchestrates": {},
+  "runtime": null
+}
