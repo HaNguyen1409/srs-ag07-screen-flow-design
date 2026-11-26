@@ -241,7 +241,7 @@ Tài liệu B12 sở hữu: danh mục màn hình SCR, sitemap, điều hướng
 ## 0. Tóm tắt | Chỉ số | Giá trị |   (số màn hình: tổng, trong mô hình mục tiêu §4.1, đã loại §4.2 — chỉ đếm, không liệt kê mã; số thay đổi §5 đếm theo từng loại; prototype; trạng thái Gate)
 ## 1. Phạm vi tài liệu
 | Cần biết | Xem ở |   (CHỈ bảng này: UC dùng màn hình nào, màn hình chưa gắn UC → RTM; vai trò được dùng chức năng → B5a; luồng thao tác, quy tắc của UC → TL-03)
-## 2. Quy ước   (cấp mã SCR, thư viện mẫu, nguồn chính về bố cục / logic; MỘT câu phân vai: §4 là nơi duy nhất định nghĩa màn hình, RTM D07_SCR chỉ giữ mã, tên làm nhãn và liên kết UC ↔ màn hình — sửa ở tài liệu này, không sửa ở RTM; trạng thái chỉ ở §5, điểm chưa rõ chỉ ở §8)
+## 2. Quy ước   (cấp mã SCR, thư viện mẫu, nguồn chính về bố cục / logic; MỘT câu chỉ chỗ đọc, không nói phân vai: «Thay đổi so với phần mềm hiện có ghi ở §5; điểm còn chưa rõ ghi ở §8. Use case dùng từng màn hình: RTM <mã> (sheet D07_SCR).» — phân vai §4 ↔ RTM D07_SCR là quy tắc cho Agent, không in ra)
 ## 3. Sitemap   (khối mermaid; menu theo module, lọc theo vai trò; chỉ màn hình của §4.1)
 ## 4. Danh mục màn hình
 ### 4.1. Màn hình của mô hình mục tiêu | SCR | Màn hình | Đường dẫn | Module | Mẫu |   (nơi duy nhất có đường dẫn, module, mẫu; RTM D07_SCR chỉ giữ mã, tên)
@@ -257,6 +257,16 @@ Tài liệu B12 sở hữu: danh mục màn hình SCR, sitemap, điều hướng
 **Một thông tin một chỗ trong B12 (20/11/2026).** Ô «Màn hình» chỉ là tên (có thể kèm phần con trong ngoặc), ô «Đường dẫn» chỉ là đường dẫn hoặc `[CẦN XÁC NHẬN]`. Không viết trạng thái vào hai ô này: loại / dựng mới / sửa → §5; chưa có giao diện, trả 404, có API mà chưa có màn hình → §8; màn hình chưa gắn UC → RTM. §0 chỉ đếm, không liệt kê lại mã của §4.2 hay §5. B-CHECK báo lỗi khi ô tên hoặc đường dẫn có ghi chú trạng thái, hoặc §8 có dòng «chưa gắn UC».
 
 Kết quả độ phủ, `open_issues` và trạng thái Gate ghi ở §0 và §8 (độ phủ chỉ là số đếm và trạng thái Gate; danh sách màn hình chưa gắn UC thuộc RTM). Câu hỏi mới cho khách không viết trong B12: ghi vào `open_issues` với `route_to = AG-03` để thành GAP của Pha A.
+
+### Quy tắc viết cho người đọc (TL-02 hướng dẫn §7)
+
+Phần Markdown được nhúng nguyên văn thành một chương của SRS, nên viết đúng ngay ở đây; SRS không sửa lại. Quy tắc áp dụng cho phần thân (bảng thông tin đầu tài liệu và lịch sử phiên bản bị bỏ khi nhúng). Đủ tám quy tắc V1–V8 và danh sách cụm cần tìm trước khi xuất: `07-Chuan-tai-lieu/templates/TL-02_huong-dan-lap-rap-SRS.md` §7. Năm điểm hay sai:
+
+- **Người đọc:** 11 nhóm, từ khách hàng, chủ nghiệp vụ tới lập trình viên, kiểm thử, người dùng cuối (danh sách ở mẫu TL-02 §1.2). Tên màn hình, câu dẫn viết tiếng Việt thông dụng («bộ lọc đã lưu», không «saved view»); đường dẫn giữ đúng như trên phần mềm.
+- **Câu dẫn** nói bảng hoặc mục dưới là gì và đọc thế nào, không nói quy trình nội bộ của bên lập: không «nơi duy nhất», «không chép lại», «vòng 1», «brief», «baseline», «hội tụ», số bước Bxx, mã AG-xx. Ghi chú sở hữu, MECE trong khung đầu ra ở trên là hướng dẫn cho Agent, không in ra. Trỏ sang tài liệu khác chỉ ghi mã tài liệu và số mục (vd «RTM <mã tài liệu> (sheet D07_SCR)»).
+- **Viết tắt và tiền tố mã:** mọi chữ viết tắt, tiền tố mã, ký hiệu trong tài liệu (SCR, IAD, tên mẫu bố cục…) phải có trong `glossary` / `id_legend` của project.json (SRS §1.4) hoặc ở §2 Quy ước. Dùng cái mới thì bổ sung vào `glossary` / `id_legend` cùng lúc.
+- **Trạng thái** in ra dạng nhãn thường trong bảng đọc («Sửa», «Dựng mới», «Loại»), không in mã HOA_GẠCH_DƯỚI (`REMOVED`, `NEW`…); mã giữ trong JSON.
+- **Một ký hiệu một nghĩa, một khái niệm một tên:** không dùng ký hiệu trùng với tiền tố mã đã có (vd «(GĐ)» trùng GD-xx giả định); câu mô tả khớp dữ liệu («không có trong sitemap» thì đúng là không có); vai trò ghi đúng tên trên phần mềm.
 
 ## [HUMAN-IN-THE-LOOP GATE]
 
